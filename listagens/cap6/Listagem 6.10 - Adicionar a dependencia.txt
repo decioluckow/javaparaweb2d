@@ -1,0 +1,5 @@
+<dependency>
+	<groupId>org.springframework.security</groupId>
+	<artifactId>facelets-taglib-jsf20-spring-3</artifactId>
+	<version>0.5</version>
+</dependency>

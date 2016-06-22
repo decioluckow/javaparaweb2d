@@ -1,0 +1,34 @@
+package br.com.javaparaweb.financeiro.usuario;
+
+import java.io.*;
+import java.util.*;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+public class Usuario implements Serializable {
+
+	@Id
+	@GeneratedValue
+	private Integer	codigo;
+	private String		nome;
+	private String		email;
+	@org.hibernate.annotations.NaturalId
+	private String	login;
+	private String	senha;
+	private Date		nascimento;
+	private String	celular;
+	private String	idioma;
+	private boolean	ativo;
+
+	@ElementCollection(targetClass = String.class) 
+	@JoinTable(
+			name="usuario_permissao", 
+			uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario","permissao"})}, 
+			joinColumns = @JoinColumn(name = "usuario")) 
+	@Column(name = "permissao", length=50) 
+	private Set<String>	permissao	= new HashSet<String>(); 
+	// gerar gets e sets
+	// gerar hashCode e equals
+}

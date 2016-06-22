@@ -1,0 +1,15 @@
+[...]
+import java.util.Locale;
+[...]
+private static final String PACOTE_MENSAGENS_IDIOMAS = "br.com.javaparaweb.financeiro.idioma.mensagens";
+[...]
+public static String getMensagem(Locale locale, String propriedade) {
+	ResourceBundle bundle = ResourceBundle.getBundle(PACOTE_MENSAGENS_IDIOMAS, locale);
+	return bundle.getString(propriedade);
+}
+public static String getMensagem(Locale locale, String propriedade, Object... parametros) {
+	String mensagem = getMensagem(locale, propriedade);
+	MessageFormat formatter = new MessageFormat(mensagem);
+	return formatter.format(parametros);
+}
+[...]

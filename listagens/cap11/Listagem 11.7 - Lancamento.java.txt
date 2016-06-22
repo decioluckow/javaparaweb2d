@@ -1,0 +1,8 @@
+package br.com.javaparaweb.financeiro.lancamento;
+import ...
+public class Lancamento {
+	[...]
+	@OneToOne(fetch = FetchType.LAZY, mappedBy="lancamento") 
+	private Cheque		cheque;
+	[...]
+}

@@ -1,0 +1,73 @@
+package br.com.javaparaweb.financeiro.web;
+import java.io.Serializable;
+import java.util.*;
+import javax.faces.bean.*;
+import br.com.javaparaweb.financeiro.categoria.Categoria;
+import br.com.javaparaweb.financeiro.conta.Conta;
+import br.com.javaparaweb.financeiro.lancamento.*;
+@ManagedBean
+@ViewScoped 
+public class LancamentoBean implements Serializable { 
+	private static final long serialVersionUID = -3050807461213326560L;
+	private List<Lancamento>	lista;
+	private Conta 				conta;
+	private List<Double>		saldos	;
+	private float					saldoGeral;
+	private Lancamento			editado	= new Lancamento();
+
+	@ManagedProperty(value = "#{contextoBean}")
+	private ContextoBean contextoBean;
+
+	public LancamentoBean() { 
+		this.novo();
+	}
+	public String novo() { 
+		this.editado = new Lancamento();
+		this.editado.setData(new Date());
+		return null;
+	}
+	public void editar() { 
+	}
+	public void salvar() {
+		this.editado.setUsuario(this.contextoBean.getUsuarioLogado());
+		this.editado.setConta(this.contextoBean.getContaAtiva());
+
+		LancamentoRN lancamentoRN = new LancamentoRN();
+		lancamentoRN.salvar(this.editado);
+
+		this.novo(); 
+		this.lista = null;
+	}
+	public void excluir() {
+		LancamentoRN lancamentoRN = new LancamentoRN();
+		lancamentoRN.excluir(this.editado);
+		this.lista = null;
+	}
+	public List<Lancamento> getLista() { 
+		if (this.lista == null || this.conta != this.contextoBean.getContaAtiva()) {
+			this.conta = this.contextoBean.getContaAtiva();
+
+			Calendar dataSaldo = new GregorianCalendar(); 
+			dataSaldo.add(Calendar.MONTH, -1);
+			dataSaldo.add(Calendar.DAY_OF_MONTH, -1);
+
+			Calendar inicio = new GregorianCalendar(); 
+			inicio.add(Calendar.MONTH, -1);
+
+			LancamentoRN lancamentoRN = new LancamentoRN();
+			this.saldoGeral = lancamentoRN.saldo(this.conta, dataSaldo.getTime()); 
+			this.lista = lancamentoRN.listar(this.conta, inicio.getTime(), null);
+
+			Categoria categoria = null;
+			double saldo = this.saldoGeral;
+			this.saldos = new ArrayList<Double>();
+			for (Lancamento lancamento : this.lista) {
+				categoria = lancamento.getCategoria();
+				saldo = saldo + (lancamento.getValor().floatValue() * categoria.getFator());
+				this.saldos.add(saldo);
+			}
+		}
+		return this.lista;
+	}
+	// gerar métodos get e set
+}

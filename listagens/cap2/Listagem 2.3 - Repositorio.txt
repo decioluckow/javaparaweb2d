@@ -1,0 +1,7 @@
+<repositories>
+<repository>
+	<id>jvnet-nexus-releases</id>
+	<name>jvnet-nexus-releases</name>
+	<url>https://maven.java.net/content/repositories/releases/</url>
+</repository>
+</repositories>

@@ -1,0 +1,7 @@
+[...]
+public static CategoriaDAO criarCategoriaDAO() {
+	CategoriaDAOHibernate categoriaDAO = new CategoriaDAOHibernate();
+	categoriaDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+	return categoriaDAO;
+}
+[...]

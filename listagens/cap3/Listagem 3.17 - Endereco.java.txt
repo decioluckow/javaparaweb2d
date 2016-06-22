@@ -1,0 +1,24 @@
+package br.com.javaparaweb.comercio.entidades;
+import java.io.Serializable;
+import javax.persistence.*;
+import org.hibernate.annotations.Parameter;
+import br.com.javaparaweb.comercio.entidades.Cliente;
+
+@Entity
+@Table(name = "endereco")
+public class Endereco implements Serializable {
+	private static final long	serialVersionUID	= 1280791770249284855L;
+
+	@Id
+	@GeneratedValue(generator = "fk_endereco_cod_cliente") 	@org.hibernate.annotations.GenericGenerator(name = "fk_endereco_cod_cliente",
+		strategy = "foreign", parameters = @Parameter(name = "property", value = "cliente")) 	@Column(name = "cod_cliente")
+	private Integer	endereco;
+
+	@OneToOne(mappedBy="endereco")
+	private Cliente	cliente;
+
+	private String	rua;
+	private String	cidade;
+	// gerar gets e sets
+	// gerar hashCode e equals
+}

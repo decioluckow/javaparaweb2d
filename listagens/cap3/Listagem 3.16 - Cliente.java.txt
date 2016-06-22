@@ -1,0 +1,31 @@
+package br.com.javaparaweb.comercio.entidades;
+
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.*;
+import br.com.javaparaweb.comercio.entidades.Endereco;
+import br.com.javaparaweb.comercio.entidades.Pedido;
+
+@Entity
+@Table(name = "cliente")
+public class Cliente implements Serializable {
+
+	private static final long	serialVersionUID	= -1707591652638708533L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "cod_cliente")
+	private Integer		cliente;
+
+	@OneToOne 
+	@PrimaryKeyJoinColumn(name = "cod_cliente") 
+	private Endereco		endereco;
+
+	@OneToMany(mappedBy="cliente", fetch = FetchType.LAZY) 
+	private List<Pedido>	pedidos;
+
+	@Column(length = 45)
+	private String			nome;
+	// gerar gets e sets
+	// gerar hashCode e equals
+}

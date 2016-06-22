@@ -1,0 +1,21 @@
+package br.com.javaparaweb.financeiro.webservice;
+
+import java.util.Date;
+
+public class LancamentoItem {
+
+	private Date	data;
+	private String	descricao;
+	private float	valor;
+
+	public LancamentoItem() {
+	}
+
+	public LancamentoItem(Date data, String descricao, float valor, int categoria) {
+		super();
+		this.data = data;
+		this.descricao = descricao;
+		this.valor = valor;
+	}
+	// gerar gets e sets
+}

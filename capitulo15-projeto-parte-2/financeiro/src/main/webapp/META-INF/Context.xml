@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context reloadable="true">
+	<Resource 	name="jdbc/FinanceiroDB" 
+			auth="Container" 
+			type="javax.sql.DataSource"
+			maxActive="100" 
+			maxIdle="30" 
+			maxWait="10000"
+			username="root" 
+			password="root" 
+			driverClassName="com.mysql.jdbc.Driver"
+			url="jdbc:mysql://localhost:3306/financeiro?autoReconnect=true"/>
+	<Resource
+			name="mail/Session"
+			auth="Container"
+			type="javax.mail.Session"
+			mail.smtp.host="localhost"
+			mail.smtp.port="25"
+			mail.smtp.auth="true"
+			mail.smtp.user="adm@localhost"
+			mail.smtp.password="123"/>
+
+</Context>

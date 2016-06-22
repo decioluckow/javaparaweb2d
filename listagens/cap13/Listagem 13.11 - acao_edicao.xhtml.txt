@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputScript name="jquery/jquery.js" library="primefaces"></h:outputScript>
+</h:head>
+<ui:composition>
+	<h:panelGrid style="margin: 0 auto;"> 
+		<h:form id="edicao">
+			<h:messages />
+			<h:inputHidden value="#{acaoBean.selecionada.acao.codigo}" />
+			<h:panelGrid columns="10">
+				<h:outputLabel value="Sigla" for="sigla" />
+				<h:inputText id="sigla" value="#{acaoBean.selecionada.acao.sigla}"
+					required="true" maxlength="10" size="10" />
+				<h:outputLabel value="Descrição" for="descricao" />
+				<h:inputText id="descricao" value="#{acaoBean.selecionada.acao.descricao}"
+					maxlength="30" size="10" />
+				<h:outputLabel value="Qt. de Quotas" for="quantidade" />
+				<h:inputText id="quantidade" value="#{acaoBean.selecionada.acao.quantidade}"
+					required="true" size="6">
+				</h:inputText>
+				<h:outputLabel value="Origem" for="origem" />
+				<h:selectOneMenu id="origem" value="#{acaoBean.selecionada.acao.origem}">
+					<f:selectItem itemValue="B" itemLabel="Bovespa" />
+					<f:selectItem itemValue="M" itemLabel="Mundo" />
+				</h:selectOneMenu>
+				<p:commandButton value="Salvar" type="button" onclick="PF('confirmDialog').show()" /> 
+				<p:confirmDialog message="Deseja salvar os dados?" header="Pergunta" 
+					severity="info" widgetVar="confirmDialog">
+					<p:commandButton value="Sim" action="#{acaoBean.salvar}"
+						update=":edicao, :listagem, :graficosCarteira"
+						oncomplete="PF('confirmDialog').hide()" />
+					<p:commandButton value="Não" onclick="PF('confirmDialog').hide()" type="button" />
+				</p:confirmDialog>
+			</h:panelGrid>
+		</h:form>
+	</h:panelGrid>
+</ui:composition>
+</html>

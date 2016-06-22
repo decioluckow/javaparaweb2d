@@ -1,0 +1,65 @@
+package br.com.javaparaweb.financeiro.web;
+
+@ManagedBean(name = "lancamentoBean")
+@ViewScoped
+public class LancamentoBean {
+	[...]
+	private Integer	numeroCheque; 
+	[...]
+	public void novo() {
+		this.editado = new Lancamento();
+		this.editado.setData(new Date());
+		this.numeroCheque = null; 
+	}
+
+	public void editar() { 
+		Cheque cheque = this.editado.getCheque();
+		if (cheque != null) {
+			this.numeroCheque = cheque.getChequeId().getCheque();
+		}
+	}
+
+	public void salvar() {
+		this.editado.setUsuario(this.contextoBean.getUsuarioLogado());
+		this.editado.setConta(this.contextoBean.getContaAtiva());
+
+		ChequeRN chequeRN = new ChequeRN(); 
+		ChequeId chequeId = null;
+		if (this.numeroCheque != null) {
+			chequeId = new ChequeId();
+			chequeId.setConta(this.contextoBean.getContaAtiva().getConta());
+			chequeId.setCheque(this.numeroCheque);
+			Cheque cheque = chequeRN.carregar(chequeId);
+			FacesContext context = FacesContext.getCurrentInstance();
+			if (cheque == null) {
+				context.addMessage(null, new FacesMessage("Cheque não cadastrado"));
+				return;
+			} else if (cheque.getSituacao() == Cheque.SITUACAO_CHEQUE_CANCELADO) {
+				context.addMessage(null, new FacesMessage("Cheque já cancelado"));
+				return;
+			} else {
+				this.editado.setCheque(cheque);
+				chequeRN.baixarCheque(chequeId, this.editado);
+			}
+		}
+		LancamentoRN lancamentoRN = new LancamentoRN();
+		lancamentoRN.salvar(this.editado);
+		this.novo();
+		this.lista = null;
+	}
+
+	public void mudouCheque(ValueChangeEvent event) { 
+		Integer chequeAnterior = (Integer) event.getOldValue();
+		if (chequeAnterior != null) {
+			ChequeRN chequeRN = new ChequeRN();
+			try {
+				chequeRN.desvinculaLancamento(contextoBean.getContaAtiva(), chequeAnterior);
+			} catch (RNException e) {
+				FacesContext context = FacesContext.getCurrentInstance();
+				context.addMessage(null, new FacesMessage(e.getMessage()));
+				return;
+			}
+		}
+	}
+	[...]
+}

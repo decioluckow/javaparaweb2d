@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<ui:composition template="/templates/externa.xhtml">
+	<ui:define name="corpo">
+		<h1><h:outputText value="#{usuarioBean.usuario.nome}"/>, seja Bem-vindo</h1>
+		Seu cadastro foi efetuado com sucesso.
+		<br/>
+		Clique <a href="login.jsf">aqui</a> para efetuar o login.
+	</ui:define>
+</ui:composition>
+</html>
+

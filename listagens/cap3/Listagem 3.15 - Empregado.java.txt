@@ -1,0 +1,25 @@
+package br.com.javaparaweb.comercio.entidades;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "empregado")
+public class Empregado implements Serializable {
+
+	private static final long serialVersionUID	= -2417223544507074940L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "cod_empregado")
+	private Integer	empregado;
+
+	private String nome;
+
+	@OneToOne 
+	@JoinColumn(name = "cod_chefe") 
+	private Empregado	chefe;
+
+	// gerar gets e sets
+	// gerar hashCode e equals
+}

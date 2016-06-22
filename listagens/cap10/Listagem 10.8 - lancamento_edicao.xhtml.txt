@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<h:form id="edicao">
+		<h:messages />
+		<h:inputHidden value="#{lancamentoBean.editado.lancamento}" />
+
+		<h:panelGrid columns="4"> 
+			<h:outputLabel value="Data" for="data" />
+			<h:outputLabel value="Categoria" for="categoria" />
+			<h:outputLabel value="Descrição" for="descricao" />
+			<h:outputLabel value="Valor" for="valor" />
+
+			<p:calendar id="data" value="#{lancamentoBean.editado.data}" pattern="dd/MM/yyyy"/> 
+
+			<h:selectOneMenu id="categoria" value="#{lancamentoBean.editado.categoria}">
+				<f:selectItems value="#{categoriaBean.categoriasSelect}"/> 
+			</h:selectOneMenu>
+
+			<h:inputText id="descricao"	value="#{lancamentoBean.editado.descricao}"
+				required="true" size="30" />
+
+			<h:inputText id="valor" value="#{lancamentoBean.editado.valor}" 	size="10">
+				<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+			</h:inputText>
+		</h:panelGrid>
+		<p:commandButton value="Novo" action="#{lancamentoBean.novo}" process="@this"
+			update=":edicao"/> 
+		<p:commandButton value="Salvar" action="#{lancamentoBean.salvar}" update=":listagem, :edicao"/>
+	</h:form>
+</ui:composition>
+</html>

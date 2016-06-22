@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<ui:composition>
+	<sec:ifAnyGranted roles="ROLE_USUARIO"> 
+		<h:form>
+			<table width="100%">
+			<tr><td>
+				<h:commandButton value="Contas" action="/restrito/conta"/> 
+				<h:selectOneMenu value="#{contextoBean.contaAtiva.conta}"
+					valueChangeListener="#{contextoBean.changeContaAtiva}" 
+					rendered="#{not empty contextoBean and not empty contextoBean.contaAtiva}"
+					onchange="submit()">
+					<f:selectItems value="#{contaBean.lista}" 
+						var="conta" itemValue="#{conta.conta}" itemLabel="#{conta.descricao}"/>
+				</h:selectOneMenu>				
+			</td>
+			<td align="left">
+				<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+					<h:commandLink action="/admin/principal" title="Administrativo"> 
+						<h:graphicImage library="imagens" name="administrativo16.png"/>
+					</h:commandLink>
+				</sec:ifAnyGranted>
+				<h:commandLink action="/restrito/principal" title="Principal"> 
+					<h:graphicImage library="imagens" name="principal16.png" />
+				</h:commandLink>
+				<a onclick="document.location='#{request.contextPath}/j_spring_security_logout'" title="Sair">
+					<h:graphicImage library="imagens" name="logout16.png" />
+				</a>
+			</td></tr>
+			</table>
+		</h:form>
+	</sec:ifAnyGranted>
+</ui:composition>
+</html>

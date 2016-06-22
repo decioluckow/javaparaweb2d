@@ -1,0 +1,35 @@
+[...]
+<repositories>
+	<repository>
+		<id>jvnet-nexus-snapshots</id>
+		<name>jvnet-nexus-snapshots</name>
+		<url>https://maven.java.net/content/repositories/snapshots/</url>
+	</repository>
+</repositories>
+<dependencies>
+	<!-- JFreeChart -->
+	<dependency>
+		<groupId>org.jfree</groupId>
+		<artifactId>jfreechart</artifactId>
+		<version>1.0.19</version>
+	</dependency>
+	<!-- Prime Faces -->
+	<dependency>
+		<groupId>org.primefaces</groupId>
+		<artifactId>primefaces</artifactId>
+		<version>5.1</version>
+	</dependency>
+	<!-- Java Server Faces -->
+	<dependency>
+		<groupId>javax</groupId>
+		<artifactId>javaee-api</artifactId>
+		<version>7.0</version>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.glassfish</groupId>
+		<artifactId>javax.faces</artifactId>
+		<version>2.2.10</version>
+	</dependency>
+</dependencies>
+[...]

@@ -1,0 +1,8 @@
+[...]
+<h1>Cadastro de Usuários</h1>
+	<h:form id="cadastro">
+		<h:messages/>
+		<h:inputHidden value="#{usuarioBean.usuario.codigo}"/>
+		<h:inputHidden value="#{usuarioBean.usuario.ativo}"/>
+		<h:inputHidden value="#{usuarioBean.destinoSalvar}"/>
+[...]

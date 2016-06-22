@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd" version="2.2">
+	<application>
+		<locale-config> 
+			<default-locale>pt_BR</default-locale>
+			<supported-locale>en_US</supported-locale>
+			<supported-locale>es_ES</supported-locale>
+			<supported-locale>pt_BR</supported-locale>
+		</locale-config>
+		<resource-bundle> 
+			<base-name>br.com.javaparaweb.financeiro.idioma.mensagens</base-name>
+			<var>msg</var>
+		</resource-bundle>
+		<!--
+		<message-bundle>br.com.javaparaweb.financeiro.idioma.CustomMessages</message-bundle> 
+		-->
+	</application>
+</faces-config>

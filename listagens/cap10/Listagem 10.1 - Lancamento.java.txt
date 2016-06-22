@@ -1,0 +1,47 @@
+package br.com.javaparaweb.financeiro.lancamento;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import br.com.javaparaweb.financeiro.categoria.Categoria;
+import br.com.javaparaweb.financeiro.conta.Conta;
+import br.com.javaparaweb.financeiro.usuario.Usuario;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "lancamento")
+public class Lancamento implements Serializable {
+
+	@Id
+	@GeneratedValue
+	@Column(name = "codigo")
+	private Integer	lancamento;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name="usuario", nullable=false,
+						foreignKey = @ForeignKey(name = "fk_lancamento_usuario"))
+	private Usuario usuario;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "conta", nullable = false,
+						foreignKey = @ForeignKey(name = "fk_lancamento_conta"))
+	private Conta conta;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "categoria", nullable = false,
+						foreignKey = @ForeignKey(name = "fk_lancamento_categoria"))
+	private Categoria categoria;
+	@Temporal(TemporalType.DATE) 
+	private Date				data;
+	private String			descricao;
+	@Column(precision = 10, scale = 2) 
+	private BigDecimal		valor;
+
+	// gerar gets e sets
+	// gerar hashCode e equals
+}

@@ -1,0 +1,3 @@
+#email de boas-vindas cadastro de usuário
+email_titulo=Seu cadastro foi efetuado!
+email_mensagem=Bem-vindo {0}, agora você já pode usar o sistema Financeiro Tudo Sob Controle (Livro Programação Java para a Web) – Novatec. Login: {1}. Senha: {2}.

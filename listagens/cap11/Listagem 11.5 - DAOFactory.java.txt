@@ -1,0 +1,7 @@
+[...]
+public static ChequeDAO criarChequeDAO() { 
+	ChequeDAOHibernate chequeDAO = new ChequeDAOHibernate();
+	chequeDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+	return chequeDAO;
+}
+[...]

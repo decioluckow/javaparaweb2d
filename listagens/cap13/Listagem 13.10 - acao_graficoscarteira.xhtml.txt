@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition>
+	<h:panelGrid width="100%"> 
+		<h:form id="graficosCarteira">
+			<h:panelGrid columns="2" width="100%" rendered="#{!empty acaoBean.lista}"> 
+				<p:panel header="Composição carteira em % de quantidade" toggleable="true" toggleSpeed="500">
+					<p:chart type="pie" model="#{acaoBean.percentualQuantidade}" style="width:265px;height:125px"/>
+				</p:panel>
+				<p:panel header="Composição carteira em % de valor"
+					toggleable="true" toggleSpeed="500" style="margin-left:+10px;"> 
+					<p:chart type="pie" model="#{acaoBean.percentualValor}" style="width:265px;height:125px"/>
+				</p:panel>
+			</h:panelGrid>
+		</h:form>
+	</h:panelGrid>
+</ui:composition>
+</html>

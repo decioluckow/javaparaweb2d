@@ -1,0 +1,27 @@
+package br.com.javaparaweb.financeiro.cheque;
+import java.io.Serializable;
+import javax.persistence.*;
+@Embeddable 
+public class ChequeId implements Serializable {
+
+	private static final long	serialVersionUID	= 1284348059531750623L;
+
+	@Basic(optional = false) 
+	@Column(name = "cheque", nullable = false)
+	private Integer			cheque;
+
+	@Basic(optional = false)
+	@Column(name = "conta", nullable = false)
+	private Integer			conta;
+
+	public ChequeId(Integer conta, Integer cheque) { 
+		this.conta = conta;
+		this.cheque = cheque;
+	}
+
+	public ChequeId() { 
+	}
+
+	// gerar gets e sets
+	// gerar hashCode e equals
+}

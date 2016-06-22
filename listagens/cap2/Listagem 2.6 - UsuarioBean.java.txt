@@ -1,0 +1,7 @@
+package br.com.javaparaweb.teste.web;
+public class UsuarioBean {
+	private String nome;
+	private String email;
+	private String senha;
+	private String confirmaSenha;
+}

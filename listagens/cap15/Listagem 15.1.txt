@@ -1,0 +1,2 @@
+select a.conta, a.descricao, a.saldoInicial, a.dataCadastro, b.nome
+from conta a, usuario b where a.usuario_codigo = b.codigo

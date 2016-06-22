@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="titulo">
+	Cadastro de Usuários
+	</ui:define>
+	<ui:define name="corpo">
+		<h:form id="cadastro">
+		[...]
+		Conteúdo do formulário do cadastro de usuários
+		[...]
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

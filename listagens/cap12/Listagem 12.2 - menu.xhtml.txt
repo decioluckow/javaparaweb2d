@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Gráficos – Livro Programação Java para a Web</title>
+</h:head>
+<h:body>
+	<h1>Gráficos com PrimeFaces</h1>
+	<h:outputLink value="primecolunas.jsf">Gráfico de Colunas</h:outputLink><br/>
+	<h:outputLink value="primepizza.jsf">Gráfico de Pizza</h:outputLink><br/>
+	<h:outputLink value="enquete.jsf">Enquete Dinâmica</h:outputLink>
+
+	<h1>Gráficos com JFreeChart</h1>
+	<h:outputLink value="jfreechartpizza.jsf">Gráfico de Pizza</h:outputLink><br/>
+	<h:outputLink value="jfreechartcolunas.jsf">Gráfico de Colunas</h:outputLink>
+</h:body>
+</html>

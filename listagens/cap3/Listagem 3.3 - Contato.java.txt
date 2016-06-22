@@ -1,0 +1,11 @@
+package br.com.javaparaweb.capitulo3.crudjdbc;
+import java.sql.Date;
+public class Contato {
+	private Integer	codigo;
+	private String  nome;
+	private String  telefone;
+	private String  email;
+	private Date dataCadastro;
+	private String observacao;
+	// gerar gets e sets
+}

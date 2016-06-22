@@ -1,0 +1,22 @@
+[...]
+import java.util.Locale;
+import br.com.javaparaweb.financeiro.util.RNException;
+import br.com.javaparaweb.financeiro.util.UtilException;
+import br.com.javaparaweb.financeiro.web.util.EmailUtil;
+import br.com.javaparaweb.financeiro.web.util.MensagemUtil;
+[...]
+public void enviarEmailPosCadastramento(Usuario usuario) throws RNException {
+	// Enviando um email conforme o idioma do usuário
+	String[] info = usuario.getIdioma().split("_");
+	Locale locale = new Locale(info[0], info[1]); 
+	String titulo = MensagemUtil.getMensagem(locale, "email_titulo");
+	String mensagem = MensagemUtil.getMensagem(locale, "email_mensagem", usuario.getNome(),
+		usuario.getLogin(), usuario.getSenha());
+	try {
+		EmailUtil emailUtil = new EmailUtil();
+		emailUtil.enviarEmail(null, usuario.getEmail(), titulo, mensagem); 
+	} catch (UtilException e) {
+		throw new RNException(e);
+	}
+}
+[...]

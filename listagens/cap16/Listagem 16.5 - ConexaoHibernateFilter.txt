@@ -1,0 +1,5 @@
+[...]
+@WebFilter(urlPatterns = { "*.jsf", "/webservice/*" })
+public class ConexaoHibernateFilter implements Filter {
+	[...]
+}

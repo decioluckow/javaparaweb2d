@@ -1,0 +1,15 @@
+<!-- WEBSERVICE -->
+<listener>
+	<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class> 
+</listener>
+<servlet>
+	<description>Webservices do Financeiro</description>
+	<display-name>financeiroWS</display-name>
+	<servlet-name>financeiroWS</servlet-name>
+	<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class> 
+	<load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+	<servlet-name>financeiroWS</servlet-name>
+	<url-pattern>/webservice/financeiroWS</url-pattern>
+</servlet-mapping>

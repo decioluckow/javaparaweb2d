@@ -1,0 +1,1 @@
+<h:commandButton value="Categorias" action="/restrito/categoria" />

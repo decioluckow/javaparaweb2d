@@ -1,0 +1,20 @@
+package br.com.javaparaweb.comercio.entidades;
+import java.io.Serializable;
+import javax.persistence.*;
+import br.com.javaparaweb.comercio.entidades.Categoria;
+@Entity
+@Table(name = "produto")
+public class Produto implements Serializable {
+	private static final long serialVersionUID	= 3959599853587681168L;
+	@Id
+	@GeneratedValue
+	@Column(name = "cod_produto")
+	private Integer	produto;
+	private String		descricao;
+	private Float		preco;
+	@ManyToOne 
+	@JoinColumn(name = "cod_categoria") 
+	private Categoria	categoria;
+	// gerar gets e sets
+	// gerar hashCode e equals
+}

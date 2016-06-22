@@ -1,0 +1,3 @@
+[...]
+<mapping class="br.com.javaparaweb.financeiro.cheque.Cheque"/>
+[...]

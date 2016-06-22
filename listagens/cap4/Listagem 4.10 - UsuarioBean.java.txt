@@ -1,0 +1,10 @@
+package br.com.javaparaweb.financeiro.web;
+import javax.faces.bean.*;
+import br.com.javaparaweb.financeiro.usuario.Usuario;
+@ManagedBean(name="usuarioBean")
+@RequestScoped
+public class UsuarioBean {
+	private Usuario	usuario = new Usuario();
+	private String confirmarSenha;
+	// gerar gets e sets
+}

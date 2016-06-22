@@ -1,0 +1,19 @@
+[...]
+<h:messages />
+<h:inputHidden value="#{contaBean.selecionada.conta}" />
+<h:inputHidden value="#{contaBean.selecionada.favorita}" />
+<h:panelGrid columns="2">
+	<h:outputLabel value="Descrição: " for="descricao" />
+	<h:inputText id="descricao" value="#{contaBean.selecionada.descricao}" required="true"
+		maxlength="45" />
+
+	<h:outputLabel value="Saldo Inicial: " for="saldoInicial" />
+	<h:inputText id="saldoInicial" value="#{contaBean.selecionada.saldoInicial}" size="10">
+			<f:convertNumber minFractionDigits="2" />
+	</h:inputText>
+
+	<h:commandButton value="Salvar" action="#{contaBean.salvar}"> 
+		<f:ajax execute="@form" render=":edicao :listagem"/>
+	</h:commandButton>
+</h:panelGrid>
+[...]

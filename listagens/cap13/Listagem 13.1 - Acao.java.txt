@@ -1,0 +1,37 @@
+package br.com.javaparaweb.financeiro.bolsa.acao;
+
+import java.io.Serializable;
+import javax.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import br.com.javaparaweb.financeiro.usuario.Usuario;
+
+@Entity
+@Table(name = "acao")
+public class Acao implements Serializable {
+	private static final long	serialVersionUID	= 1679122528267640774L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "cod_acao")
+	private Integer	codigo;
+
+	@Column(nullable = false, length = 10)
+	private String		sigla; 
+
+	@Column(length = 30)
+	private String		descricao;
+
+	@Column(nullable = false)
+	private Integer	quantidade; 
+
+	@Column(nullable = false, length = 1)
+	private Character	origem; 
+
+	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	@JoinColumn(name = "cod_usuario", nullable = false)
+	private Usuario	usuario;
+	// gerar gets e sets
+	// gerar hashCode e equals
+}

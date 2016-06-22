@@ -1,0 +1,7 @@
+[...]
+public static LancamentoDAO criarLancamentoDAO() {
+	LancamentoDAOHibernate lancamentoDAO = new LancamentoDAOHibernate();
+	lancamentoDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+	return lancamentoDAO;
+}
+[...]

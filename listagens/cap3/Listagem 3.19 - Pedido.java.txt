@@ -1,0 +1,35 @@
+package br.com.javaparaweb.comercio.entidades;
+import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.*;
+import br.com.javaparaweb.comercio.entidades.Cliente;
+import br.com.javaparaweb.comercio.entidades.Empregado;
+@Entity
+@Table(name = "pedido")
+public class Pedido implements Serializable {
+	private static final long	serialVersionUID	= -3219882293977763487L;
+	@Id
+	@GeneratedValue
+	@Column(name = "cod_pedido")
+	private Integer	pedido;
+  	@Column(name = "data_pedido", updatable = false) 
+	private Date	dataPedido;
+	@Column(name = "hora_pedido", updatable = false)
+	private Time		horaPedido;
+  	private String descricao;
+	@ManyToOne
+  	@JoinColumn(name = "cod_cliente")
+	private Cliente	cliente;
+  	@ManyToOne
+  	@JoinColumn(name = "cod_empregado")
+	private Empregado	empregado;
+  	@ManyToMany
+  	@JoinTable(name = "item", joinColumns = { @JoinColumn(name = "cod_pedido",
+  	referencedColumnName = "cod_pedido") }, inverseJoinColumns = { @JoinColumn(name = "cod_produto") }) 
+	private Set<Produto> produto = new HashSet<Produto>();
+	// gerar gets e sets
+	// gerar hashCode e equals
+}

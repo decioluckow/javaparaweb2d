@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="titulo">
+		Cadastro de contas
+	</ui:define>
+	<ui:define name="corpo">
+		<h:form id="edicao">
+			[...]
+		</h:form>
+		<h:form id="listagem">
+			[...]
+		</h:form>
+		<h:form id="impressao">
+			<h:commandLink>
+				<f:setPropertyActionListener target="#{contaBean.tipoRelatorio}" value="1"/> 
+				<p:fileDownload value="#{contaBean.arquivoRetorno}"/> 
+				<h:graphicImage library="imagens" name="pdf.png" title="Imprimir PDF"/>
+			</h:commandLink>
+			<h:commandLink>
+				<f:setPropertyActionListener target="#{contaBean.tipoRelatorio}" value="2"/>
+				<p:fileDownload value="#{contaBean.arquivoRetorno}"/>
+				<h:graphicImage library="imagens" name="excel.png" 	title="Imprimir Excel"/>
+			</h:commandLink>
+			<h:commandLink>
+				<f:setPropertyActionListener target="#{contaBean.tipoRelatorio}" value="3"/>
+				<p:fileDownload value="#{contaBean.arquivoRetorno}"/>
+				<h:graphicImage library="imagens" name="html.png" title="Imprimir HTML"/>
+			</h:commandLink>
+			<h:commandLink>
+				<f:setPropertyActionListener target="#{contaBean.tipoRelatorio}" value="4"/>
+				<p:fileDownload value="#{contaBean.arquivoRetorno}"/>
+				<h:graphicImage library="imagens" name="ods.png" 	title="Imprimir Planilha Open Office"/>
+			</h:commandLink>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
+[...]

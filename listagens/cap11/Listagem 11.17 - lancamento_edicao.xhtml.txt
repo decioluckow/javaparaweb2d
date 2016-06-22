@@ -1,0 +1,11 @@
+[...]
+<h:panelGrid columns="5">
+[...]
+<h:outputLabel value="Valor" for="valor" />
+<h:outputLabel value="Cheque" for="numeroCheque" />
+[...]
+<h:inputText id="valor" value="#{lancamentoBean.editado.valor}" 	size="10">
+	<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+</h:inputText>
+<h:inputText id="numeroCheque" value="#{lancamentoBean.numeroCheque}" maxlength="6" size="6" valueChangeListener="#{lancamentoBean.mudouCheque}"/> 
+[...]

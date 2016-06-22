@@ -1,0 +1,13 @@
+select usuario.nome, usuario.email,
+		usuario.celular, usuario.nascimento,
+		conta.conta, conta.descricao as des_conta,
+		lancamento.descricao as des_lanc, lancamento.data,
+		(lancamento.valor * categoria.fator) as valor
+from usuario, conta, lancamento, categoria
+where usuario.codigo = conta.usuario_codigo
+and conta.conta = lancamento.conta
+and lancamento.categoria = categoria.codigo
+and usuario.codigo = $P{codigoUsuario}
+and conta.conta = $P{numeroConta}
+and lancamento.data >= $P{dataInicial}
+and lancamento.data <= $P{dataFinal}

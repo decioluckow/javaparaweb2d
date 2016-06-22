@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/templates/interna.xhtml">
+	<ui:define name="titulo">
+		Cadastro de Ações
+	</ui:define>
+	<ui:define name="corpo">
+		<ui:include src="acao_graficoscarteira.xhtml" /> 
+		<br />
+		<ui:include src="acao_edicao.xhtml" /> 
+		<br />
+		<ui:include src="acao_listagem.xhtml" /> 
+		<br />
+		<ui:include src="acao_graficos.xhtml"/> 
+	</ui:define>
+</ui:composition>
+</html>

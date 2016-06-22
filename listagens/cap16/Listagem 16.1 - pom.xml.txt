@@ -1,0 +1,32 @@
+[...]
+<dependency>
+	<groupId>com.sun.xml.ws</groupId>
+	<artifactId>jaxws-rt</artifactId>
+	<version>2.2.8</version>
+</dependency>
+<dependency>
+	<groupId>com.sun.xml.bind</groupId>
+	<artifactId>jaxb-impl</artifactId>
+	<version>2.2.7</version>
+</dependency>
+<dependency>
+	<groupId>com.sun.xml.stream.buffer</groupId>
+	<artifactId>streambuffer</artifactId>
+	<version>1.5.1</version>
+</dependency>
+<dependency>
+	<groupId>com.sun.xml.ws</groupId>
+	<artifactId>policy</artifactId>
+	<version>2.3.1</version>
+</dependency>
+<dependency>
+	<groupId>org.glassfish.gmbal</groupId>
+	<artifactId>gmbal-api-only</artifactId>
+	<version>3.1.0-b001</version>
+</dependency>
+<dependency>
+	<groupId>org.glassfish.ha</groupId>
+	<artifactId>ha-api</artifactId>
+	<version>3.1.9</version>
+</dependency>
+[...]

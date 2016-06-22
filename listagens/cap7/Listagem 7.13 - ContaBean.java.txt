@@ -1,0 +1,24 @@
+[...]
+public String excluir() { 
+	ContaRN contaRN = new ContaRN();
+	contaRN.excluir(this.selecionada);
+	this.selecionada = new Conta();
+	this.lista = null;
+	return null;
+}
+
+public List<Conta> getLista() { 
+	if (this.lista == null) {
+		ContaRN contaRN = new ContaRN();
+		this.lista = contaRN.listar(this.contextoBean.getUsuarioLogado());
+	}
+	return this.lista;
+}
+
+public String tornarFavorita() { 
+	ContaRN contaRN = new ContaRN();
+	contaRN.tornarFavorita(this.selecionada);
+	this.selecionada = new Conta();
+	return null;
+}
+[...]

@@ -1,0 +1,10 @@
+package br.com.javaparaweb.financeiro.util;
+import ...
+public class DAOFactory {
+	[...]
+	public static AcaoDAO criarAcaoDAO() { 
+		AcaoDAOHibernate acaoDAO = new AcaoDAOHibernate();
+		acaoDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+		return acaoDAO;
+	}
+}

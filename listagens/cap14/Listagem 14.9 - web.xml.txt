@@ -1,0 +1,8 @@
+[...]
+<resource-ref>
+	<description>Mail Session</description>
+	<res-ref-name>mail/Session</res-ref-name>
+	<res-type>javax.mail.Session</res-type>
+	<res-auth>Container</res-auth>
+</resource-ref>
+[...]
