@@ -5,7 +5,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -21,14 +20,6 @@ public class Usuario implements Serializable {
 	private String senha;
 	private Date nascimento;
 	private String celular;
-	public Set<String> getPermissao() {
-		return permissao;
-	}
-
-	public void setPermissao(Set<String> permissao) {
-		this.permissao = permissao;
-	}
-
 	private String idioma;
 	private boolean ativo;
 	@ElementCollection(targetClass = String.class) 
@@ -112,6 +103,14 @@ public class Usuario implements Serializable {
 		this.ativo = ativo;
 	}
 
+	public Set<String> getPermissao() {
+		return permissao;
+	}
+
+	public void setPermissao(Set<String> permissao) {
+		this.permissao = permissao;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

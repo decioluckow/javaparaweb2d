@@ -35,8 +35,7 @@ public class UsuarioBean {
 
 		String senha = this.usuario.getSenha();
 		if (!senha.equals(this.confirmarSenha)) {
-			FacesMessage facesMessage = new FacesMessage(
-					"A senha não foi confirmada corretamente");
+			FacesMessage facesMessage = new FacesMessage("A senha não foi confirmada corretamente");
 			context.addMessage(null, facesMessage);
 			return null;
 		}
@@ -79,7 +78,7 @@ public class UsuarioBean {
 		}
 		return this.lista;
 	}
-
+	
 	public String atribuiPermissao(Usuario usuario, String permissao) {
 		this.usuario = usuario;
 		java.util.Set<String> permissoes = this.usuario.getPermissao();
@@ -90,6 +89,7 @@ public class UsuarioBean {
 		}
 		return null;
 	}
+
 
 	public Usuario getUsuario() {
 		return usuario;
