@@ -32,8 +32,7 @@ public class UsuarioBean {
 
 		String senha = this.usuario.getSenha();
 		if (!senha.equals(this.confirmarSenha)) {
-			FacesMessage facesMessage = new FacesMessage(
-					"A senha não foi confirmada corretamente");
+			FacesMessage facesMessage = new FacesMessage("A senha não foi confirmada corretamente");
 			context.addMessage(null, facesMessage);
 			return null;
 		}
