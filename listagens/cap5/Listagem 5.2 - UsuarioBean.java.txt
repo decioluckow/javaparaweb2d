@@ -6,6 +6,8 @@ import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import br.com.javaparaweb.financeiro.usuario.*;
 
+@ManagedBean(name = "usuarioBean")
+@RequestScoped
 public class UsuarioBean {
 	private Usuario				usuario	= new Usuario();
 	private String				confirmarSenha;
