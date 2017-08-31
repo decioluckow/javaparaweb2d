@@ -21,8 +21,7 @@ public class DAOException extends Exception {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DAOException(String message, Throwable cause,
-			boolean enableSuppression, boolean writableStackTrace) {
+	public DAOException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
 	}

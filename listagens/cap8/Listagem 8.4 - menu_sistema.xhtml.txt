@@ -2,10 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition>
-	<sec:ifAnyGranted roles="ROLE_USUARIO"> 
+	<h:panelGroup rendered="#{request.isUserInRole('ROLE_USUARIO')}> 
 		<h:form>
 			<table width="100%">
 			<tr><td>
@@ -19,11 +18,11 @@
 				</h:selectOneMenu>
 			</td>
 			<td align="left">
-				<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+				<h:panelGroup rendered="#{request.isUserInRole('ROLE_ADMINISTRADOR')}">
 					<h:commandLink action="/admin/principal" title="Administrativo">
 						<h:graphicImage library="imagens" name="administrativo16.png"/>
 					</h:commandLink>
-				</sec:ifAnyGranted>
+				</h:panelGroup>
 				<h:commandLink action="/restrito/principal" title="Principal"> 
 					<h:graphicImage library="imagens" name="principal16.png" />
 				</h:commandLink>
@@ -33,6 +32,6 @@
 			</td></tr>
 			</table>
 		</h:form>
-	</sec:ifAnyGranted>
+	</h:panelGroup>
 </ui:composition>
 </html>

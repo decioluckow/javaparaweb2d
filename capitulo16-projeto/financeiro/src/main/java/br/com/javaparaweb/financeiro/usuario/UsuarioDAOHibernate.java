@@ -1,6 +1,7 @@
 package br.com.javaparaweb.financeiro.usuario;
 
 import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -16,10 +17,10 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
 	}
 
 	public void atualizar(Usuario usuario) {
-		if (usuario.getPermissao() == null || usuario.getPermissao().size() == 0) { 
-			Usuario usuarioPermissao = this.carregar(usuario.getCodigo()); 
-			usuario.setPermissao(usuarioPermissao.getPermissao()); 
-			this.session.evict(usuarioPermissao); 
+		if (usuario.getPermissao() == null || usuario.getPermissao().size() == 0) {
+			Usuario usuarioPermissao = this.carregar(usuario.getCodigo());
+			usuario.setPermissao(usuarioPermissao.getPermissao());
+			this.session.evict(usuarioPermissao);
 		}
 		this.session.update(usuario);
 	}

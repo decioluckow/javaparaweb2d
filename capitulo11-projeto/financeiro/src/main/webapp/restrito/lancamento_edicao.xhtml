@@ -16,25 +16,31 @@
 			<h:outputLabel value="Valor" for="valor" />
 			<h:outputLabel value="Cheque" for="numeroCheque" />
 
-			<p:calendar id="data" value="#{lancamentoBean.editado.data}" pattern="dd/MM/yyyy"/> 
+			<p:calendar id="data" value="#{lancamentoBean.editado.data}"
+				pattern="dd/MM/yyyy" />
 
-			<h:selectOneMenu id="categoria" value="#{lancamentoBean.editado.categoria}">
-				<f:selectItems value="#{categoriaBean.categoriasSelect}"/> 
+			<h:selectOneMenu id="categoria"
+				value="#{lancamentoBean.editado.categoria}">
+				<f:selectItems value="#{categoriaBean.categoriasSelect}" />
 			</h:selectOneMenu>
 
-			<h:inputText id="descricao"	value="#{lancamentoBean.editado.descricao}"
-				required="true" size="30" />
+			<h:inputText id="descricao"
+				value="#{lancamentoBean.editado.descricao}" required="true"
+				size="30" />
 
-			<h:inputText id="valor" value="#{lancamentoBean.editado.valor}" 	size="10">
-				<f:convertNumber minFractionDigits="2" maxFractionDigits="2"/>
+			<h:inputText id="valor" value="#{lancamentoBean.editado.valor}"
+				size="10">
+				<f:convertNumber minFractionDigits="2" maxFractionDigits="2" />
 			</h:inputText>
-			
-			<h:inputText id="numeroCheque" value="#{lancamentoBean.numeroCheque}" maxlength="6" size="6" valueChangeListener="#{lancamentoBean.mudouCheque}"/> 
+
+			<h:inputText id="numeroCheque" value="#{lancamentoBean.numeroCheque}"
+				maxlength="6" size="6"
+				valueChangeListener="#{lancamentoBean.mudouCheque}" />
 		</h:panelGrid>
-		<p:commandButton value="Novo" action="#{lancamentoBean.novo}" process="@this" 
-			update=":edicao"/> 
-		<p:commandButton value="Salvar" action="#{lancamentoBean.salvar}" update=":listagem, :edicao"/>
+		<p:commandButton value="Novo" action="#{lancamentoBean.novo}"
+			process="@this" update=":edicao" />
+		<p:commandButton value="Salvar" action="#{lancamentoBean.salvar}"
+			update=":listagem, :edicao" />
 	</h:form>
 </ui:composition>
 </html>
-

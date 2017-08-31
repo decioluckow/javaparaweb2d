@@ -32,7 +32,7 @@ public class LancamentoBean implements Serializable {
 	private List<Double> saldos;
 	private float saldoGeral;
 	private Lancamento editado = new Lancamento();
-	private Integer	numeroCheque; 
+	private Integer numeroCheque;
 
 	@ManagedProperty(value = "#{contextoBean}")
 	private ContextoBean contextoBean;
@@ -44,7 +44,7 @@ public class LancamentoBean implements Serializable {
 	public String novo() {
 		this.editado = new Lancamento();
 		this.editado.setData(new Date());
-		this.numeroCheque = null; 
+		this.numeroCheque = null;
 		return null;
 	}
 
@@ -60,7 +60,7 @@ public class LancamentoBean implements Serializable {
 		this.editado.setUsuario(this.contextoBean.getUsuarioLogado());
 		this.editado.setConta(this.contextoBean.getContaAtiva());
 
-		ChequeRN chequeRN = new ChequeRN(); 
+		ChequeRN chequeRN = new ChequeRN();
 		ChequeId chequeId = null;
 		if (this.numeroCheque != null) {
 			chequeId = new ChequeId();
@@ -73,22 +73,21 @@ public class LancamentoBean implements Serializable {
 				return;
 			} else if (cheque.getSituacao() == Cheque.SITUACAO_CHEQUE_CANCELADO) {
 				context.addMessage(null, new FacesMessage("Cheque já cancelado"));
-				return;				
+				return;
 			} else {
 				this.editado.setCheque(cheque);
 				chequeRN.baixarCheque(chequeId, this.editado);
 			}
 		}
 
-		
 		LancamentoRN lancamentoRN = new LancamentoRN();
 		lancamentoRN.salvar(this.editado);
 
 		this.novo();
 		this.lista = null;
 	}
-	
-	public void mudouCheque(ValueChangeEvent event) { 
+
+	public void mudouCheque(ValueChangeEvent event) {
 		Integer chequeAnterior = (Integer) event.getOldValue();
 		if (chequeAnterior != null) {
 			ChequeRN chequeRN = new ChequeRN();
@@ -102,7 +101,6 @@ public class LancamentoBean implements Serializable {
 		}
 	}
 
-
 	public void excluir() {
 		LancamentoRN lancamentoRN = new LancamentoRN();
 		lancamentoRN.excluir(this.editado);
@@ -110,8 +108,7 @@ public class LancamentoBean implements Serializable {
 	}
 
 	public List<Lancamento> getLista() {
-		if (this.lista == null
-				|| this.conta != this.contextoBean.getContaAtiva()) {
+		if (this.lista == null || this.conta != this.contextoBean.getContaAtiva()) {
 			this.conta = this.contextoBean.getContaAtiva();
 
 			Calendar dataSaldo = new GregorianCalendar();
@@ -122,19 +119,15 @@ public class LancamentoBean implements Serializable {
 			inicio.add(Calendar.MONTH, -1);
 
 			LancamentoRN lancamentoRN = new LancamentoRN();
-			this.saldoGeral = lancamentoRN.saldo(this.conta,
-					dataSaldo.getTime());
-			this.lista = lancamentoRN
-					.listar(this.conta, inicio.getTime(), null);
+			this.saldoGeral = lancamentoRN.saldo(this.conta, dataSaldo.getTime());
+			this.lista = lancamentoRN.listar(this.conta, inicio.getTime(), null);
 
 			Categoria categoria = null;
 			double saldo = this.saldoGeral;
 			this.saldos = new ArrayList<Double>();
 			for (Lancamento lancamento : this.lista) {
 				categoria = lancamento.getCategoria();
-				saldo = saldo
-						+ (lancamento.getValor().floatValue() * categoria
-								.getFator());
+				saldo = saldo + (lancamento.getValor().floatValue() * categoria.getFator());
 				this.saldos.add(saldo);
 			}
 		}
@@ -184,11 +177,11 @@ public class LancamentoBean implements Serializable {
 	public void setLista(List<Lancamento> lista) {
 		this.lista = lista;
 	}
-	
+
 	public void setNumeroCheque(Integer numeroCheque) {
 		this.numeroCheque = numeroCheque;
 	}
-	
+
 	public Integer getNumeroCheque() {
 		return numeroCheque;
 	}

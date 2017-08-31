@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<endpoints xmlns='http://java.sun.com/xml/ns/jax-ws/ri/runtime' version='2.0'>
-	<endpoint name='financeiroWS' implementation='br.com.javaparaweb.financeiro.webservice.FinanceiroWS' 
-		url-pattern='/webservice/financeiroWS'/>
+<endpoints xmlns='http://java.sun.com/xml/ns/jax-ws/ri/runtime'
+	version='2.0'>
+	<endpoint name='financeiroWS'
+		implementation='br.com.javaparaweb.financeiro.webservice.FinanceiroWS'
+		url-pattern='/webservice/financeiroWS' />
 </endpoints>

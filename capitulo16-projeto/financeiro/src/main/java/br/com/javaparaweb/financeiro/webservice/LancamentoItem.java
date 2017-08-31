@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class LancamentoItem {
 
-	private Date	data;
-	private String	descricao;
-	private float	valor;
+	private Date data;
+	private String descricao;
+	private float valor;
 
 	public LancamentoItem() {
 	}
@@ -41,5 +41,5 @@ public class LancamentoItem {
 	public void setValor(float valor) {
 		this.valor = valor;
 	}
-	
+
 }

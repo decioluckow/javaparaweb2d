@@ -23,10 +23,10 @@ public class UsuarioRN {
 	public void salvar(Usuario usuario) {
 		Integer codigo = usuario.getCodigo();
 		if (codigo == null || codigo == 0) {
-			usuario.getPermissao().add("ROLE_USUARIO"); 
+			usuario.getPermissao().add("ROLE_USUARIO");
 			this.usuarioDAO.salvar(usuario);
 			CategoriaRN categoriaRN = new CategoriaRN();
-			categoriaRN.salvaEstruturaPadrao(usuario); 
+			categoriaRN.salvaEstruturaPadrao(usuario);
 		} else {
 			this.usuarioDAO.atualizar(usuario);
 		}
@@ -34,7 +34,7 @@ public class UsuarioRN {
 
 	public void excluir(Usuario usuario) {
 		CategoriaRN categoriaRN = new CategoriaRN();
-		categoriaRN.excluir(usuario); 
+		categoriaRN.excluir(usuario);
 		this.usuarioDAO.excluir(usuario);
 	}
 

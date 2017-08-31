@@ -1,6 +1,7 @@
 package br.com.javaparaweb.financeiro.usuario;
 
 import java.util.List;
+
 import br.com.javaparaweb.financeiro.util.DAOFactory;
 
 public class UsuarioRN {
@@ -21,7 +22,7 @@ public class UsuarioRN {
 	public void salvar(Usuario usuario) {
 		Integer codigo = usuario.getCodigo();
 		if (codigo == null || codigo == 0) {
-			usuario.getPermissao().add("ROLE_USUARIO"); 
+			usuario.getPermissao().add("ROLE_USUARIO");
 			this.usuarioDAO.salvar(usuario);
 		} else {
 			this.usuarioDAO.atualizar(usuario);

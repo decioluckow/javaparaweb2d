@@ -8,16 +8,19 @@
 <ui:composition>
 	<h:form id="relatorio">
 		<h:panelGroup>
-			<fieldset><legend>Parâmetros do Relatório</legend>
-			<h:panelGrid columns="7">
-				<h:outputLabel value="Data Inicial: "/>
-				<p:calendar value="#{lancamentoBean.dataInicialRelatorio}" pattern="dd/MM/yyyy"/>
-				<h:outputLabel value="Data Final: "/>
-				<p:calendar value="#{lancamentoBean.dataFinalRelatorio}" pattern="dd/MM/yyyy"/>
-				<p:commandButton value="Imprimir" ajax="false">
-					<p:fileDownload value="#{lancamentoBean.arquivoRetorno}"/>
-				</p:commandButton>
-			</h:panelGrid>
+			<fieldset>
+				<legend>Parâmetros do Relatório</legend>
+				<h:panelGrid columns="7">
+					<h:outputLabel value="Data Inicial: " />
+					<p:calendar value="#{lancamentoBean.dataInicialRelatorio}"
+						pattern="dd/MM/yyyy" />
+					<h:outputLabel value="Data Final: " />
+					<p:calendar value="#{lancamentoBean.dataFinalRelatorio}"
+						pattern="dd/MM/yyyy" />
+					<p:commandButton value="Imprimir" ajax="false">
+						<p:fileDownload value="#{lancamentoBean.arquivoRetorno}" />
+					</p:commandButton>
+				</h:panelGrid>
 			</fieldset>
 		</h:panelGroup>
 	</h:form>

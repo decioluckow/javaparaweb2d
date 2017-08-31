@@ -1,7 +1,10 @@
 package br.com.javaparaweb.financeiro.categoria;
 
 import java.util.List;
-import org.hibernate.*;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 import br.com.javaparaweb.financeiro.usuario.Usuario;
 
 public class CategoriaDAOHibernate implements CategoriaDAO {

@@ -12,29 +12,28 @@
 		<h:panelGrid columns="2" cellpadding="5">
 			<h:panelGroup>
 				<h:form>
-					<p:commandButton value="Novo" action="#{categoriaBean.novo}" update=":edicao"/> 
+					<p:commandButton value="Novo" action="#{categoriaBean.novo}"
+						update=":edicao" />
 				</h:form>
-				<h:form id="arvore" style="float:left"> 
-					<p:tree value="#{categoriaBean.categoriasTree}" 
-						var="node"
-						dynamic="false" 
-						cache="false" 
-						selectionMode="single"
-						expandAnim="FADE_IN" 
-						collapseAnim="FADE_OUT">
-						<p:ajax event="select" update=":edicao" listener="#{categoriaBean.selecionar}" /> 
+				<h:form id="arvore" style="float:left">
+					<p:tree value="#{categoriaBean.categoriasTree}" var="node"
+						dynamic="false" cache="false" selectionMode="single"
+						expandAnim="FADE_IN" collapseAnim="FADE_OUT">
+						<p:ajax event="select" update=":edicao"
+							listener="#{categoriaBean.selecionar}" />
 						<p:treeNode>
 							<h:outputText value="#{node.descricao}" />
 						</p:treeNode>
 					</p:tree>
 				</h:form>
 			</h:panelGroup>
-			<h:panelGroup id="edicao"> 
+			<h:panelGroup id="edicao">
 				<h:form>
 					<h:messages />
-					<h:panelGroup style="visibility:#{((categoriaBean.mostraEdicao)?'visible':'hidden')}"> 
+					<h:panelGroup
+						style="visibility:#{((categoriaBean.mostraEdicao)?'visible':'hidden')}">
 						<h:inputHidden value="#{categoriaBean.editada.codigo}" />
-						<h:inputHidden value="#{categoriaBean.editada.fator}" /> 
+						<h:inputHidden value="#{categoriaBean.editada.fator}" />
 						<h:inputHidden value="#{categoriaBean.mostraEdicao}" />
 						<h:panelGrid columns="2">
 							<h:outputLabel value="Pai" />
@@ -45,15 +44,18 @@
 							<h:inputText value="#{categoriaBean.editada.descricao}" />
 							<h:outputText />
 							<h:panelGroup>
-								<p:commandButton value="Salvar" action="#{categoriaBean.salvar}" update=":edicao, :arvore"/> 
-								<p:commandButton value="Excluir" action="#{categoriaBean.excluir}" update=":edicao, :arvore"/> 
+								<p:commandButton value="Salvar" action="#{categoriaBean.salvar}"
+									update=":edicao, :arvore" />
+								<p:commandButton value="Excluir"
+									action="#{categoriaBean.excluir}" update=":edicao, :arvore" />
 							</h:panelGroup>
 							<h:outputText />
-							<p:commandButton value="Nova subcategoria" action="#{categoriaBean.novo}" update=":edicao"/> 
+							<p:commandButton value="Nova subcategoria"
+								action="#{categoriaBean.novo}" update=":edicao" />
 						</h:panelGrid>
 					</h:panelGroup>
 				</h:form>
-			</h:panelGroup>	
+			</h:panelGroup>
 		</h:panelGrid>
 	</ui:define>
 </ui:composition>

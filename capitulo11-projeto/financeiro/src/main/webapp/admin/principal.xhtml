@@ -13,8 +13,8 @@
 		<h:dataTable value="#{usuarioBean.lista}" var="usuario" rules="rows"
 			cellpadding="5">
 			<f:facet name="caption"> 
-			A listagem a seguir exibe a relação de todos os usuários do sistema. Você poderá realizar ativação e desativação, edição e exclusão para os usuários.
-		</f:facet>
+				A listagem a seguir exibe a relação de todos os usuários do sistema. Você poderá realizar ativação e desativação, edição e exclusão para os usuários.
+			</f:facet>
 			<f:facet name="header">Listagem de Usuários</f:facet>
 			<f:facet name="footer">Final da listagem</f:facet>
 			<h:column>
@@ -27,8 +27,8 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">Código</f:facet>
-			#{usuario.codigo}
-		</h:column>
+				#{usuario.codigo}
+			</h:column>
 			<h:column>
 				<h:graphicImage library="imagens"
 					name="bandeira_#{usuario.idioma}.png" />
@@ -77,7 +77,6 @@
 						style="border:0" />
 				</h:commandLink>
 			</h:column>
-
 		</h:dataTable>
 	</h:form>
 </h:body>

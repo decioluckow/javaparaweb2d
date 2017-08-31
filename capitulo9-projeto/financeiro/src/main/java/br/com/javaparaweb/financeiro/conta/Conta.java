@@ -86,10 +86,8 @@ public class Conta implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((conta == null) ? 0 : conta.hashCode());
-		result = prime * result
-				+ ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
-		result = prime * result
-				+ ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result + ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + (favorita ? 1231 : 1237);
 		result = prime * result + Float.floatToIntBits(saldoInicial);
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
@@ -122,8 +120,7 @@ public class Conta implements Serializable {
 			return false;
 		if (favorita != other.favorita)
 			return false;
-		if (Float.floatToIntBits(saldoInicial) != Float
-				.floatToIntBits(other.saldoInicial))
+		if (Float.floatToIntBits(saldoInicial) != Float.floatToIntBits(other.saldoInicial))
 			return false;
 		if (usuario == null) {
 			if (other.usuario != null)

@@ -2,6 +2,7 @@ package br.com.javaparaweb.financeiro.conta;
 
 import java.util.Date;
 import java.util.List;
+
 import br.com.javaparaweb.financeiro.usuario.Usuario;
 import br.com.javaparaweb.financeiro.util.DAOFactory;
 

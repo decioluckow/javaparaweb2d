@@ -3,42 +3,49 @@ package br.com.javaparaweb.financeiro.cheque;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import br.com.javaparaweb.financeiro.conta.Conta;
 import br.com.javaparaweb.financeiro.lancamento.Lancamento;
+
 @Entity
 @Table(name = "cheque")
 public class Cheque implements Serializable {
 
-	private static final long serialVersionUID = -7391845936828023963L;	
-	public static final char	SITUACAO_CHEQUE_BAIXADO		= 'B';
-	public static final char	SITUACAO_CHEQUE_CANCELADO		= 'C';
-	public static final char	SITUACAO_CHEQUE_NAO_EMITIDO	= 'N';
+	private static final long serialVersionUID = -7391845936828023963L;
+	public static final char SITUACAO_CHEQUE_BAIXADO = 'B';
+	public static final char SITUACAO_CHEQUE_CANCELADO = 'C';
+	public static final char SITUACAO_CHEQUE_NAO_EMITIDO = 'N';
 
-	@EmbeddedId 
-	private ChequeId			chequeId;
+	@EmbeddedId
+	private ChequeId chequeId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@OnDelete(action=OnDeleteAction.CASCADE)
-	@JoinColumn(name = "conta", referencedColumnName = "conta", insertable = false, updatable = false, 
-		foreignKey = 	@ForeignKey(name = "fk_cheque_conta"))
-	private Conta				conta;
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "conta", referencedColumnName = "conta", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "fk_cheque_conta"))
+	private Conta conta;
 
 	@Column(name = "data_cadastro", nullable = false)
-	private Date				dataCadastro;
+	private Date dataCadastro;
 
 	@Column(nullable = false, precision = 1)
-	private Character		situacao;
+	private Character situacao;
 
-	@OneToOne(fetch = FetchType.LAZY) 
-	@OnDelete(action=OnDeleteAction.CASCADE)
-@JoinColumn(name = "lancamento", referencedColumnName = "codigo", nullable = true, 
-		foreignKey = @ForeignKey(name = "fk_cheque_lancamento"))
-	private Lancamento		lancamento;
+	@OneToOne(fetch = FetchType.LAZY)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "lancamento", referencedColumnName = "codigo", nullable = true, foreignKey = @ForeignKey(name = "fk_cheque_lancamento"))
+	private Lancamento lancamento;
 
 	public ChequeId getChequeId() {
 		return chequeId;
@@ -84,15 +91,11 @@ public class Cheque implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((chequeId == null) ? 0 : chequeId.hashCode());
+		result = prime * result + ((chequeId == null) ? 0 : chequeId.hashCode());
 		result = prime * result + ((conta == null) ? 0 : conta.hashCode());
-		result = prime * result
-				+ ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
-		result = prime * result
-				+ ((lancamento == null) ? 0 : lancamento.hashCode());
-		result = prime * result
-				+ ((situacao == null) ? 0 : situacao.hashCode());
+		result = prime * result + ((dataCadastro == null) ? 0 : dataCadastro.hashCode());
+		result = prime * result + ((lancamento == null) ? 0 : lancamento.hashCode());
+		result = prime * result + ((situacao == null) ? 0 : situacao.hashCode());
 		return result;
 	}
 
@@ -133,5 +136,4 @@ public class Cheque implements Serializable {
 		return true;
 	}
 
-	
 }

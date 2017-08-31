@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -14,6 +15,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
+import org.primefaces.model.StreamedContent;
+
 import br.com.javaparaweb.financeiro.categoria.Categoria;
 import br.com.javaparaweb.financeiro.cheque.Cheque;
 import br.com.javaparaweb.financeiro.cheque.ChequeId;
@@ -22,11 +25,8 @@ import br.com.javaparaweb.financeiro.conta.Conta;
 import br.com.javaparaweb.financeiro.lancamento.Lancamento;
 import br.com.javaparaweb.financeiro.lancamento.LancamentoRN;
 import br.com.javaparaweb.financeiro.util.RNException;
-
-import org.primefaces.model.StreamedContent;
-import br.com.javaparaweb.financeiro.web.util.RelatorioUtil;
-import java.util.HashMap;
 import br.com.javaparaweb.financeiro.util.UtilException;
+import br.com.javaparaweb.financeiro.web.util.RelatorioUtil;
 
 @ManagedBean(name = "lancamentoBean")
 @ViewScoped
@@ -37,11 +37,11 @@ public class LancamentoBean implements Serializable {
 	private List<Double> saldos;
 	private float saldoGeral;
 	private Lancamento editado = new Lancamento();
-	private Integer	numeroCheque; 
-	
-	private java.util.Date		dataInicialRelatorio;
-	private java.util.Date		dataFinalRelatorio;
-	private StreamedContent	arquivoRetorno;
+	private Integer numeroCheque;
+
+	private java.util.Date dataInicialRelatorio;
+	private java.util.Date dataFinalRelatorio;
+	private StreamedContent arquivoRetorno;
 
 	@ManagedProperty(value = "#{contextoBean}")
 	private ContextoBean contextoBean;
@@ -53,7 +53,7 @@ public class LancamentoBean implements Serializable {
 	public String novo() {
 		this.editado = new Lancamento();
 		this.editado.setData(new Date());
-		this.numeroCheque = null; 
+		this.numeroCheque = null;
 		return null;
 	}
 
@@ -69,7 +69,7 @@ public class LancamentoBean implements Serializable {
 		this.editado.setUsuario(this.contextoBean.getUsuarioLogado());
 		this.editado.setConta(this.contextoBean.getContaAtiva());
 
-		ChequeRN chequeRN = new ChequeRN(); 
+		ChequeRN chequeRN = new ChequeRN();
 		ChequeId chequeId = null;
 		if (this.numeroCheque != null) {
 			chequeId = new ChequeId();
@@ -82,22 +82,21 @@ public class LancamentoBean implements Serializable {
 				return;
 			} else if (cheque.getSituacao() == Cheque.SITUACAO_CHEQUE_CANCELADO) {
 				context.addMessage(null, new FacesMessage("Cheque já cancelado"));
-				return;				
+				return;
 			} else {
 				this.editado.setCheque(cheque);
 				chequeRN.baixarCheque(chequeId, this.editado);
 			}
 		}
 
-		
 		LancamentoRN lancamentoRN = new LancamentoRN();
 		lancamentoRN.salvar(this.editado);
 
 		this.novo();
 		this.lista = null;
 	}
-	
-	public void mudouCheque(ValueChangeEvent event) { 
+
+	public void mudouCheque(ValueChangeEvent event) {
 		Integer chequeAnterior = (Integer) event.getOldValue();
 		if (chequeAnterior != null) {
 			ChequeRN chequeRN = new ChequeRN();
@@ -111,38 +110,36 @@ public class LancamentoBean implements Serializable {
 		}
 	}
 
-
 	public void excluir() {
 		LancamentoRN lancamentoRN = new LancamentoRN();
 		lancamentoRN.excluir(this.editado);
 		this.lista = null;
 	}
-	
+
 	public StreamedContent getArquivoRetorno() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		String usuario = contextoBean.getUsuarioLogado().getLogin();
 		String nomeRelatorioJasper = "extrato";
-		String nomeRelatorioSaida = usuario + "_extrato"; 
+		String nomeRelatorioSaida = usuario + "_extrato";
 		LancamentoRN lancamentoRN = new LancamentoRN();
 		GregorianCalendar calendario = new GregorianCalendar();
 		calendario.setTime(this.getDataInicialRelatorio());
-		calendario.add(Calendar.DAY_OF_MONTH, -1); 
+		calendario.add(Calendar.DAY_OF_MONTH, -1);
 		Date dataSaldo = new Date(calendario.getTimeInMillis());
 		RelatorioUtil relatorioUtil = new RelatorioUtil();
-		HashMap parametrosRelatorio = new HashMap(); 
+		HashMap parametrosRelatorio = new HashMap();
 		parametrosRelatorio.put("codigoUsuario", contextoBean.getUsuarioLogado().getCodigo());
 		parametrosRelatorio.put("numeroConta", contextoBean.getContaAtiva().getConta());
 		parametrosRelatorio.put("dataInicial", this.getDataInicialRelatorio());
 		parametrosRelatorio.put("dataFinal", this.getDataFinalRelatorio());
-		parametrosRelatorio.put("saldoAnterior", lancamentoRN.saldo(contextoBean.getContaAtiva(), 
-			dataSaldo));
+		parametrosRelatorio.put("saldoAnterior", lancamentoRN.saldo(contextoBean.getContaAtiva(), dataSaldo));
 		try {
 			this.arquivoRetorno = relatorioUtil.geraRelatorio(parametrosRelatorio, nomeRelatorioJasper,
-				nomeRelatorioSaida, RelatorioUtil.RELATORIO_PDF);
+					nomeRelatorioSaida, RelatorioUtil.RELATORIO_PDF);
 		} catch (UtilException e) {
 			context.addMessage(null, new FacesMessage(e.getMessage()));
 			return null;
-		} 
+		}
 		return this.arquivoRetorno;
 	}
 
@@ -167,8 +164,7 @@ public class LancamentoBean implements Serializable {
 	}
 
 	public List<Lancamento> getLista() {
-		if (this.lista == null
-				|| this.conta != this.contextoBean.getContaAtiva()) {
+		if (this.lista == null || this.conta != this.contextoBean.getContaAtiva()) {
 			this.conta = this.contextoBean.getContaAtiva();
 
 			Calendar dataSaldo = new GregorianCalendar();
@@ -179,19 +175,15 @@ public class LancamentoBean implements Serializable {
 			inicio.add(Calendar.MONTH, -1);
 
 			LancamentoRN lancamentoRN = new LancamentoRN();
-			this.saldoGeral = lancamentoRN.saldo(this.conta,
-					dataSaldo.getTime());
-			this.lista = lancamentoRN
-					.listar(this.conta, inicio.getTime(), null);
+			this.saldoGeral = lancamentoRN.saldo(this.conta, dataSaldo.getTime());
+			this.lista = lancamentoRN.listar(this.conta, inicio.getTime(), null);
 
 			Categoria categoria = null;
 			double saldo = this.saldoGeral;
 			this.saldos = new ArrayList<Double>();
 			for (Lancamento lancamento : this.lista) {
 				categoria = lancamento.getCategoria();
-				saldo = saldo
-						+ (lancamento.getValor().floatValue() * categoria
-								.getFator());
+				saldo = saldo + (lancamento.getValor().floatValue() * categoria.getFator());
 				this.saldos.add(saldo);
 			}
 		}
@@ -241,11 +233,11 @@ public class LancamentoBean implements Serializable {
 	public void setLista(List<Lancamento> lista) {
 		this.lista = lista;
 	}
-	
+
 	public void setNumeroCheque(Integer numeroCheque) {
 		this.numeroCheque = numeroCheque;
 	}
-	
+
 	public Integer getNumeroCheque() {
 		return numeroCheque;
 	}

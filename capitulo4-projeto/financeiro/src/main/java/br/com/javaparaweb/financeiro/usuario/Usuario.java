@@ -1,9 +1,11 @@
 package br.com.javaparaweb.financeiro.usuario;
 
-import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Usuario implements Serializable {
@@ -12,7 +14,7 @@ public class Usuario implements Serializable {
 	private Integer codigo;
 	private String nome;
 	private String email;
-	@org.hibernate.annotations.NaturalId 
+	@org.hibernate.annotations.NaturalId
 	private String login;
 	private String senha;
 	private Date nascimento;
@@ -102,8 +104,7 @@ public class Usuario implements Serializable {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((idioma == null) ? 0 : idioma.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result
-				+ ((nascimento == null) ? 0 : nascimento.hashCode());
+		result = prime * result + ((nascimento == null) ? 0 : nascimento.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;

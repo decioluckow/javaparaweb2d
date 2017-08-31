@@ -54,6 +54,7 @@ public class Comercio {
 		endereco.setRua("Rua dos Beltranos, 60");
 		endereco.setCidade("Blumenau");
 		endereco.setCliente(cliente);
+		sessao.save(endereco);
 		cliente.setEndereco(endereco);
 		sessao.save(cliente);
 		return cliente;
@@ -62,13 +63,15 @@ public class Comercio {
 		Cliente cliente = new Cliente();
 		Endereco endereco = new Endereco();
 		cliente.setNome("Fulano");
-		cliente.setEndereco(endereco);
 		endereco.setRua("Rua dos Fulanos, 6");
 		endereco.setCidade("Florianópolis");
 		endereco.setCliente(cliente);
+		sessao.save(endereco);
+		cliente.setEndereco(endereco);
 		sessao.save(cliente);
 		return cliente;
 	}
+
 	public Empregado criarEmpregadoMelo() {
 		Empregado chefe = new Empregado();
 		chefe.setNome("Chefe");

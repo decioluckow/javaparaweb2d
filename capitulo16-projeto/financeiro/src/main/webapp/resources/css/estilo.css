@@ -4,13 +4,29 @@ body, td, th {
 }
 
 th {
-	background: url(#{resource['imagens:fundo_claro.png']}); 
-	min-height: 25px;
-	padding: 3px;
+	background: url(#{ resource [ 'imagens:fundo_claro.png' ]
 }
 
+);
+min-height
+:
+ 
+25
+px
+;
+
+	
+padding
+:
+ 
+3
+px
+;
+
+
+}
 img {
-	border:0px;
+	border: 0px;
 }
 
 #container {
@@ -18,7 +34,7 @@ img {
 	height: 100%;
 	margin: 0 auto
 }
-	
+
 #titulo {
 	float: left;
 	font-size: 25pt;
@@ -27,12 +43,36 @@ img {
 }
 
 #barra_menu {
-	background: url(#{resource['imagens:fundo_barra_menu.png']}) repeat-x; 
-	min-height: 25px;
-	padding: 3px;
-	clear:both;
+	background: url(#{ resource [ 'imagens:fundo_barra_menu.png' ]
 }
 
+)
+repeat-x
+;
+ 
+	
+min-height
+:
+ 
+25
+px
+;
+
+	
+padding
+:
+ 
+3
+px
+;
+
+	
+clear
+:both
+;
+
+
+}
 #corpo {
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -40,13 +80,46 @@ img {
 }
 
 #rodape {
-	background: url(#{resource['imagens:fundo_barra_rodape.png']}) repeat-x;
-	height: 100px;
-	margin-top: 5px;
-	padding: 10px;
-	text-align: center;
+	background: url(#{ resource [ 'imagens:fundo_barra_rodape.png' ]
 }
 
+)
+repeat-x
+;
+
+	
+height
+:
+ 
+100
+px
+;
+
+	
+margin-top
+:
+ 
+5
+px
+;
+
+	
+padding
+:
+ 
+10
+px
+;
+
+	
+text-align
+:
+ 
+center
+;
+
+
+}
 .info {
 	font-weight: bold;
 	color: green;

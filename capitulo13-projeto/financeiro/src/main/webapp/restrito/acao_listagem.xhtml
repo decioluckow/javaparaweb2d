@@ -6,16 +6,17 @@
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition>
 	<h:panelGrid style="margin: 0 auto;">
-		<h:panelGroup> 
+		<h:panelGroup>
 			<h:form id="listagem">
-				<h:dataTable value="#{acaoBean.lista}" var="acaoVirtual" cellspacing="3"
-					rendered="#{!empty acaoBean.lista}">
+				<h:dataTable value="#{acaoBean.lista}" var="acaoVirtual"
+					cellspacing="3" rendered="#{!empty acaoBean.lista}">
 					<h:column>
 						<f:facet name="header">Sigla</f:facet>
-						<h:commandLink title="gráficos da ação"> 
+						<h:commandLink title="gráficos da ação">
 							<f:ajax execute="@this" render=":graficosAcao" />
 							<h:outputText value="#{acaoVirtual.acao.sigla}" />
-							<f:setPropertyActionListener target="#{acaoBean.selecionada}" value="#{acaoVirtual}" />
+							<f:setPropertyActionListener target="#{acaoBean.selecionada}"
+								value="#{acaoVirtual}" />
 						</h:commandLink>
 					</h:column>
 					<h:column>
@@ -28,17 +29,20 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">Quantidade</f:facet>
-						<h:outputText value="#{acaoVirtual.acao.quantidade}" style="text-align:right; display:block;" />
+						<h:outputText value="#{acaoVirtual.acao.quantidade}"
+							style="text-align:right; display:block;" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Último Preço</f:facet>
-						<h:outputText value="#{acaoVirtual.ultimoPreco}" style="text-align:right; display:block;">
+						<h:outputText value="#{acaoVirtual.ultimoPreco}"
+							style="text-align:right; display:block;">
 							<f:convertNumber type="currency" />
 						</h:outputText>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Total</f:facet>
-						<h:outputText value="#{acaoVirtual.total}" style="text-align:right; 	display:block;">
+						<h:outputText value="#{acaoVirtual.total}"
+							style="text-align:right; 	display:block;">
 							<f:convertNumber type="currency" />
 						</h:outputText>
 					</h:column>
@@ -46,14 +50,17 @@
 						<h:commandLink title="editar">
 							<f:ajax execute="@this" render=":edicao" />
 							<h:graphicImage library="imagens" name="editar16.png" />
-							<f:setPropertyActionListener target="#{acaoBean.selecionada}" value="#{acaoVirtual}" />
+							<f:setPropertyActionListener target="#{acaoBean.selecionada}"
+								value="#{acaoVirtual}" />
 						</h:commandLink>
 					</h:column>
 					<h:column>
 						<h:commandLink action="#{acaoBean.excluir}" title="excluir">
-							<f:ajax execute="@this" render=":listagem :graficosCarteira :graficosAcao" />
+							<f:ajax execute="@this"
+								render=":listagem :graficosCarteira :graficosAcao" />
 							<h:graphicImage library="imagens" name="excluir16.png" />
-							<f:setPropertyActionListener target="#{acaoBean.selecionada}" value="#{acaoVirtual}" />
+							<f:setPropertyActionListener target="#{acaoBean.selecionada}"
+								value="#{acaoVirtual}" />
 						</h:commandLink>
 					</h:column>
 				</h:dataTable>

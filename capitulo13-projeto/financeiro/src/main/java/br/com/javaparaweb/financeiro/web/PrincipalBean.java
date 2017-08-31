@@ -1,17 +1,21 @@
 package br.com.javaparaweb.financeiro.web;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+
 import br.com.javaparaweb.financeiro.conta.Conta;
 import br.com.javaparaweb.financeiro.lancamento.Lancamento;
 import br.com.javaparaweb.financeiro.lancamento.LancamentoRN;
 
 @ManagedBean
-public class PrincipalBean {	
-	private List<Lancamento>	listaAteHoje;
-	private List<Lancamento>	listaFuturos;
-	
+public class PrincipalBean {
+	private List<Lancamento> listaAteHoje;
+	private List<Lancamento> listaFuturos;
+
 	@ManagedProperty(value = "#{contextoBean}")
 	private ContextoBean contextoBean;
 

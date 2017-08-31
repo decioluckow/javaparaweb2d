@@ -2,7 +2,13 @@ package br.com.javaparaweb.financeiro.bolsa.acao;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -12,29 +18,29 @@ import br.com.javaparaweb.financeiro.usuario.Usuario;
 @Entity
 @Table(name = "acao")
 public class Acao implements Serializable {
-	private static final long	serialVersionUID	= 1679122528267640774L;
+	private static final long serialVersionUID = 1679122528267640774L;
 
 	@Id
 	@GeneratedValue
 	@Column(name = "cod_acao")
-	private Integer	codigo;
+	private Integer codigo;
 
 	@Column(nullable = false, length = 10)
-	private String		sigla;
+	private String sigla;
 
 	@Column(length = 30)
-	private String		descricao;
+	private String descricao;
 
 	@Column(nullable = false)
-	private Integer	quantidade; 
+	private Integer quantidade;
 
 	@Column(nullable = false, length = 1)
-	private Character	origem; 
+	private Character origem;
 
 	@ManyToOne
-	@OnDelete(action=OnDeleteAction.CASCADE)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "cod_usuario", nullable = false)
-	private Usuario	usuario;
+	private Usuario usuario;
 
 	public Integer getCodigo() {
 		return codigo;
@@ -89,11 +95,9 @@ public class Acao implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-		result = prime * result
-				+ ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((origem == null) ? 0 : origem.hashCode());
-		result = prime * result
-				+ ((quantidade == null) ? 0 : quantidade.hashCode());
+		result = prime * result + ((quantidade == null) ? 0 : quantidade.hashCode());
 		result = prime * result + ((sigla == null) ? 0 : sigla.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;

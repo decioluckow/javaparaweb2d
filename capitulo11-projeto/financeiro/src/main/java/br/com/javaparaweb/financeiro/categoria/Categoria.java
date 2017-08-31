@@ -2,10 +2,21 @@ package br.com.javaparaweb.financeiro.categoria;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.*;
-import br.com.javaparaweb.financeiro.usuario.Usuario;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import br.com.javaparaweb.financeiro.usuario.Usuario;
 
 @Entity
 public class Categoria implements Serializable {

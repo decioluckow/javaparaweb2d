@@ -1,14 +1,16 @@
 package br.com.javaparaweb.financeiro.cheque;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+
 import br.com.javaparaweb.financeiro.conta.Conta;
-import br.com.javaparaweb.financeiro.util.RNException;
 import br.com.javaparaweb.financeiro.lancamento.Lancamento;
 import br.com.javaparaweb.financeiro.util.DAOFactory;
+import br.com.javaparaweb.financeiro.util.RNException;
 
 public class ChequeRN {
 
-	private ChequeDAO	chequeDAO;
+	private ChequeDAO chequeDAO;
 
 	public ChequeRN() {
 		this.chequeDAO = DAOFactory.criarChequeDAO();
@@ -18,7 +20,7 @@ public class ChequeRN {
 		this.chequeDAO.salvar(cheque);
 	}
 
-	public int salvarSequencia(Conta conta, Integer chequeInicial, Integer chequeFinal) { 
+	public int salvarSequencia(Conta conta, Integer chequeInicial, Integer chequeFinal) {
 		Cheque cheque = null;
 		ChequeId chequeId = null;
 		int contaTotal = 0;
@@ -37,7 +39,7 @@ public class ChequeRN {
 		return contaTotal;
 	}
 
-	public void excluir(Cheque cheque) throws RNException { 
+	public void excluir(Cheque cheque) throws RNException {
 		if (cheque.getSituacao() == Cheque.SITUACAO_CHEQUE_NAO_EMITIDO) {
 			this.chequeDAO.excluir(cheque);
 		} else {
@@ -45,7 +47,7 @@ public class ChequeRN {
 		}
 	}
 
-	public Cheque carregar(ChequeId chequeId) { 
+	public Cheque carregar(ChequeId chequeId) {
 		return this.chequeDAO.carregar(chequeId);
 	}
 
@@ -53,9 +55,9 @@ public class ChequeRN {
 		return this.chequeDAO.listar(conta);
 	}
 
-	public void cancelarCheque(Cheque cheque) throws RNException { 
-		if (cheque.getSituacao() == Cheque.SITUACAO_CHEQUE_NAO_EMITIDO 
-			|| cheque.getSituacao() == Cheque.SITUACAO_CHEQUE_CANCELADO) {
+	public void cancelarCheque(Cheque cheque) throws RNException {
+		if (cheque.getSituacao() == Cheque.SITUACAO_CHEQUE_NAO_EMITIDO
+				|| cheque.getSituacao() == Cheque.SITUACAO_CHEQUE_CANCELADO) {
 			cheque.setSituacao(Cheque.SITUACAO_CHEQUE_CANCELADO);
 			this.chequeDAO.salvar(cheque);
 		} else {
@@ -72,18 +74,18 @@ public class ChequeRN {
 		}
 	}
 
-	public void desvinculaLancamento(Conta conta, Integer numeroCheque) throws RNException {  
+	public void desvinculaLancamento(Conta conta, Integer numeroCheque) throws RNException {
 		ChequeId chequeId = new ChequeId(conta.getConta(), numeroCheque);
 		Cheque cheque = this.carregar(chequeId);
 		if (cheque == null) {
 			return;
 		}
 		if (cheque.getSituacao() == Cheque.SITUACAO_CHEQUE_CANCELADO) {
-			throw new RNException("Não é possível usar cheque cancelado.");	
+			throw new RNException("Não é possível usar cheque cancelado.");
 		} else {
 			cheque.setSituacao(Cheque.SITUACAO_CHEQUE_NAO_EMITIDO);
 			cheque.setLancamento(null);
 			this.salvar(cheque);
 		}
-	}	
+	}
 }

@@ -1,11 +1,20 @@
 package br.com.javaparaweb.financeiro.web;
 
 import java.io.Serializable;
-import java.util.*;
-import javax.faces.bean.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+
 import br.com.javaparaweb.financeiro.categoria.Categoria;
 import br.com.javaparaweb.financeiro.conta.Conta;
-import br.com.javaparaweb.financeiro.lancamento.*;
+import br.com.javaparaweb.financeiro.lancamento.Lancamento;
+import br.com.javaparaweb.financeiro.lancamento.LancamentoRN;
 
 @ManagedBean(name = "lancamentoBean")
 @ViewScoped
@@ -51,8 +60,7 @@ public class LancamentoBean implements Serializable {
 	}
 
 	public List<Lancamento> getLista() {
-		if (this.lista == null
-				|| this.conta != this.contextoBean.getContaAtiva()) {
+		if (this.lista == null || this.conta != this.contextoBean.getContaAtiva()) {
 			this.conta = this.contextoBean.getContaAtiva();
 
 			Calendar dataSaldo = new GregorianCalendar();
@@ -63,19 +71,15 @@ public class LancamentoBean implements Serializable {
 			inicio.add(Calendar.MONTH, -1);
 
 			LancamentoRN lancamentoRN = new LancamentoRN();
-			this.saldoGeral = lancamentoRN.saldo(this.conta,
-					dataSaldo.getTime());
-			this.lista = lancamentoRN
-					.listar(this.conta, inicio.getTime(), null);
+			this.saldoGeral = lancamentoRN.saldo(this.conta, dataSaldo.getTime());
+			this.lista = lancamentoRN.listar(this.conta, inicio.getTime(), null);
 
 			Categoria categoria = null;
 			double saldo = this.saldoGeral;
 			this.saldos = new ArrayList<Double>();
 			for (Lancamento lancamento : this.lista) {
 				categoria = lancamento.getCategoria();
-				saldo = saldo
-						+ (lancamento.getValor().floatValue() * categoria
-								.getFator());
+				saldo = saldo + (lancamento.getValor().floatValue() * categoria.getFator());
 				this.saldos.add(saldo);
 			}
 		}

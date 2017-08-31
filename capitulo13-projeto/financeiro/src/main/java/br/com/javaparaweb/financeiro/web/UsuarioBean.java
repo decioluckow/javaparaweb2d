@@ -1,13 +1,16 @@
 package br.com.javaparaweb.financeiro.web;
 
-import javax.faces.bean.*;
-import br.com.javaparaweb.financeiro.usuario.Usuario;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-import br.com.javaparaweb.financeiro.usuario.UsuarioRN;
 import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+
 import br.com.javaparaweb.financeiro.conta.Conta;
 import br.com.javaparaweb.financeiro.conta.ContaRN;
+import br.com.javaparaweb.financeiro.usuario.Usuario;
+import br.com.javaparaweb.financeiro.usuario.UsuarioRN;
 
 @ManagedBean(name = "usuarioBean")
 @RequestScoped
@@ -35,8 +38,7 @@ public class UsuarioBean {
 
 		String senha = this.usuario.getSenha();
 		if (!senha.equals(this.confirmarSenha)) {
-			FacesMessage facesMessage = new FacesMessage(
-					"A senha não foi confirmada corretamente");
+			FacesMessage facesMessage = new FacesMessage("A senha não foi confirmada corretamente");
 			context.addMessage(null, facesMessage);
 			return null;
 		}
@@ -44,13 +46,13 @@ public class UsuarioBean {
 		UsuarioRN usuarioRN = new UsuarioRN();
 		usuarioRN.salvar(this.usuario);
 
-		if (this.conta.getDescricao() != null) { 
-			this.conta.setUsuario(this.usuario); 
-			this.conta.setFavorita(true); 
+		if (this.conta.getDescricao() != null) {
+			this.conta.setUsuario(this.usuario);
+			this.conta.setFavorita(true);
 			ContaRN contaRN = new ContaRN();
 			contaRN.salvar(this.conta);
 		}
-		
+
 		return this.destinoSalvar;
 	}
 

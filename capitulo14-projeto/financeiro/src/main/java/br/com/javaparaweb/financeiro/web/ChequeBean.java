@@ -1,34 +1,38 @@
 package br.com.javaparaweb.financeiro.web;
+
 import java.util.List;
+
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.*;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.javaparaweb.financeiro.cheque.*;
+import br.com.javaparaweb.financeiro.cheque.Cheque;
+import br.com.javaparaweb.financeiro.cheque.ChequeRN;
 import br.com.javaparaweb.financeiro.conta.Conta;
 import br.com.javaparaweb.financeiro.util.RNException;
 import br.com.javaparaweb.financeiro.web.util.MensagemUtil;
 
-@ManagedBean(name="chequeBean")
+@ManagedBean(name = "chequeBean")
 @RequestScoped
 public class ChequeBean {
-	private Cheque			selecionado	= new Cheque();
-	private List<Cheque>	lista	= null;
-	private Integer			chequeInicial;
-	private Integer			chequeFinal;
+	private Cheque selecionado = new Cheque();
+	private List<Cheque> lista = null;
+	private Integer chequeInicial;
+	private Integer chequeFinal;
 
 	@ManagedProperty(value = "#{contextoBean}")
 	private ContextoBean contextoBean;
 
 	public void salvar() {
-		FacesContext context = FacesContext.getCurrentInstance(); 
+		FacesContext context = FacesContext.getCurrentInstance();
 		Conta conta = contextoBean.getContaAtiva();
 		if (this.chequeInicial == null || this.chequeFinal == null) {
-			String texto = MensagemUtil.getMensagem("cheque_erro_sequencia"); 
-			context.addMessage(null, new FacesMessage(texto)); 
+			String texto = MensagemUtil.getMensagem("cheque_erro_sequencia");
+			context.addMessage(null, new FacesMessage(texto));
 		} else if (this.chequeFinal < this.chequeInicial) {
-			String texto = MensagemUtil.getMensagem("cheque_erro_inicial_final", this.chequeInicial,
-				this.chequeFinal);
+			String texto = MensagemUtil.getMensagem("cheque_erro_inicial_final", this.chequeInicial, this.chequeFinal);
 			context.addMessage(null, new FacesMessage(texto));
 		} else {
 			ChequeRN chequeRN = new ChequeRN();
@@ -38,6 +42,7 @@ public class ChequeBean {
 			this.lista = null;
 		}
 	}
+
 	public void excluir() {
 		ChequeRN chequeRN = new ChequeRN();
 		try {
@@ -51,6 +56,7 @@ public class ChequeBean {
 		}
 		this.lista = null;
 	}
+
 	public void cancelar() {
 		ChequeRN chequeRN = new ChequeRN();
 		try {
@@ -64,6 +70,7 @@ public class ChequeBean {
 		}
 		this.lista = null;
 	}
+
 	public List<Cheque> getLista() {
 		if (this.lista == null) {
 			Conta conta = contextoBean.getContaAtiva();
@@ -72,30 +79,39 @@ public class ChequeBean {
 		}
 		return this.lista;
 	}
+
 	public Cheque getSelecionado() {
 		return selecionado;
 	}
+
 	public void setSelecionado(Cheque selecionado) {
 		this.selecionado = selecionado;
 	}
+
 	public Integer getChequeInicial() {
 		return chequeInicial;
 	}
+
 	public void setChequeInicial(Integer chequeInicial) {
 		this.chequeInicial = chequeInicial;
 	}
+
 	public Integer getChequeFinal() {
 		return chequeFinal;
 	}
+
 	public void setChequeFinal(Integer chequeFinal) {
 		this.chequeFinal = chequeFinal;
 	}
+
 	public ContextoBean getContextoBean() {
 		return contextoBean;
 	}
+
 	public void setContextoBean(ContextoBean contextoBean) {
 		this.contextoBean = contextoBean;
 	}
+
 	public void setLista(List<Cheque> lista) {
 		this.lista = lista;
 	}

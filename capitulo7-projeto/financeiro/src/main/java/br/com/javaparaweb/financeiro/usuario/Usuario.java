@@ -1,12 +1,18 @@
 package br.com.javaparaweb.financeiro.usuario;
 
-import javax.persistence.*;
-
+import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import java.io.Serializable;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 public class Usuario implements Serializable {
@@ -15,21 +21,18 @@ public class Usuario implements Serializable {
 	private Integer codigo;
 	private String nome;
 	private String email;
-	@org.hibernate.annotations.NaturalId 
+	@org.hibernate.annotations.NaturalId
 	private String login;
 	private String senha;
 	private Date nascimento;
 	private String celular;
 	private String idioma;
 	private boolean ativo;
-	@ElementCollection(targetClass = String.class) 
-	@JoinTable(
-			name="usuario_permissao", 
-			uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario","permissao"})}, 
-			joinColumns = @JoinColumn(name = "usuario")) 
-	@Column(name = "permissao", length=50) 
-	private Set<String>	permissao	= new HashSet<String>(); 
-
+	@ElementCollection(targetClass = String.class)
+	@JoinTable(name = "usuario_permissao", uniqueConstraints = {
+			@UniqueConstraint(columnNames = { "usuario", "permissao" }) }, joinColumns = @JoinColumn(name = "usuario"))
+	@Column(name = "permissao", length = 50)
+	private Set<String> permissao = new HashSet<String>();
 
 	public Integer getCodigo() {
 		return codigo;
@@ -110,7 +113,7 @@ public class Usuario implements Serializable {
 	public void setPermissao(Set<String> permissao) {
 		this.permissao = permissao;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -121,11 +124,9 @@ public class Usuario implements Serializable {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((idioma == null) ? 0 : idioma.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result
-				+ ((nascimento == null) ? 0 : nascimento.hashCode());
+		result = prime * result + ((nascimento == null) ? 0 : nascimento.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result
-				+ ((permissao == null) ? 0 : permissao.hashCode());
+		result = prime * result + ((permissao == null) ? 0 : permissao.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}

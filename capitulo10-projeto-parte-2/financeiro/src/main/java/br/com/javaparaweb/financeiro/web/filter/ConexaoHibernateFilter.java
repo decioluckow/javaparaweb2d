@@ -1,10 +1,17 @@
 package br.com.javaparaweb.financeiro.web.filter;
 
-import javax.servlet.*;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
 import br.com.javaparaweb.financeiro.util.HibernateUtil;
 
 @WebFilter(urlPatterns = { "*.jsf" })
@@ -15,8 +22,7 @@ public class ConexaoHibernateFilter implements Filter {
 		this.sf = HibernateUtil.getSessionFactory();
 	}
 
-	public void doFilter(ServletRequest servletRequest,
-			ServletResponse servletResponse, FilterChain chain)
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
 			throws ServletException {
 
 		Session currentSession = this.sf.getCurrentSession();

@@ -1,4 +1,1 @@
-<repository>
-	<id>org.springframework.security.taglibs.facelets</id>
-	<url>http://spring-security-facelets-taglib.googlecode.com/svn/repo/</url>
-</repository>
+esta listagem tornou-se desnecessária
